@@ -36,3 +36,15 @@
     transform: rotate(360deg);
   }
 }
+
+.table-basic{
+  background-color: #FFF;
+}
+
+.table-basic tr{
+  transition: all ease 0.25s;
+}
+
+.table-basic tr:hover{
+  background-color: rgb(172, 169, 169);
+}

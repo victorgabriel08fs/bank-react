@@ -1,0 +1,14 @@
+.card-item {
+    width: 80vw;
+    height: 10vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #FFF;
+    color: #000;
+    transition: all ease 0.8s;
+}
+
+.card-item:hover{
+    background-color: yellowgreen;
+}
