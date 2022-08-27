@@ -14,7 +14,7 @@ const UsersPage = () => {
             setUsers(data);
             setLoading(true);
         });
-    }, []);
+    }, [users]);
 
     return (<div>
         <Table striped bordered hover className='table-basic'>
@@ -27,7 +27,7 @@ const UsersPage = () => {
             </thead>
             <tbody>
                     {users.map((user) => {
-                        return (<CardItem key={user.id} item={user} />);
+                        return (loading?<CardItem key={user.id} item={user} />:'Loading');
                     })}
             </tbody>
         </Table>

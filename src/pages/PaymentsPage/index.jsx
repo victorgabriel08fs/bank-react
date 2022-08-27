@@ -13,7 +13,7 @@ const PaymentsPage = () => {
             setPayments(data);
             setLoading(true);
         });
-    }, []);
+    }, [payments]);
 
     return (<div>
         <Table className='table-basic' striped bordered hover>
@@ -27,7 +27,7 @@ const PaymentsPage = () => {
             </thead>
             <tbody>
                 {payments.map((payment) => {
-                    return (<CardItem key={payment.id} item={payment} />);
+                    return (loading ? <CardItem key={payment.id} item={payment} /> : 'Loading...');
                 })}
             </tbody>
         </Table>
