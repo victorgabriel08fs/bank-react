@@ -9,6 +9,11 @@
     transition: all ease 0.8s;
 }
 
-.card-item:hover{
+.link {
+    text-decoration: none;
+    color: #000;
+}
+
+.card-item:hover {
     background-color: yellowgreen;
 }

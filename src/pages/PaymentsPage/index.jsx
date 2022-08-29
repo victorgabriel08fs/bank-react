@@ -2,13 +2,18 @@ import React, { useEffect, useState } from 'react';
 import CardItem from './CardItem';
 import api from '../../services/api';
 import { Table } from 'react-bootstrap';
+import {
+    useParams
+} from "react-router-dom";
 
 const PaymentsPage = () => {
     const [payments, setPayments] = useState([]);
     const [loading, setLoading] = useState(false);
 
+    const {id} = useParams();
+
     useEffect(() => {
-        api.get("payments").then(async (response) => {
+        api.get("customers/"+id+"/payments").then(async (response) => {
             var data = await response.data;
             setPayments(data);
             setLoading(true);

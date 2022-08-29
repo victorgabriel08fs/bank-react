@@ -2,19 +2,24 @@ import React, { useEffect, useState } from 'react';
 import CardItem from './CardItem';
 import api from '../../services/api';
 import { Table } from 'react-bootstrap';
+import {
+    useParams
+} from "react-router-dom";
 
 
-const UsersPage = () => {
-    const [users, setUsers] = useState([]);
+const CustomersPage = () => {
+    const [customers, setUsers] = useState([]);
     const [loading, setLoading] = useState(false);
+    const [user, setUser] = useState();
+    const { id } = useParams();
 
     useEffect(() => {
-        api.get("users").then(async (response) => {
+        api.get("users/" + id + "/customers").then(async (response) => {
             var data = await response.data;
             setUsers(data);
             setLoading(true);
         });
-    }, [users]);
+    }, [customers]);
 
     return (<div>
         <Table striped bordered hover className='table-basic'>
@@ -23,16 +28,17 @@ const UsersPage = () => {
                     <th>ID</th>
                     <th>Name</th>
                     <th>CPF/CNPJ</th>
-                    <th>Customers</th>
+                    <th>Adress</th>
+                    <th>Payments</th>
                 </tr>
             </thead>
             <tbody>
-                    {users.map((user) => {
-                        return (loading?<CardItem key={user.id} item={user} />:'Loading');
-                    })}
+                {customers.map((customer) => {
+                    return (loading ? <CardItem key={customer.id} item={customer} /> : 'Loading');
+                })}
             </tbody>
         </Table>
     </div>);
 }
 
-export default UsersPage;
+export default CustomersPage;

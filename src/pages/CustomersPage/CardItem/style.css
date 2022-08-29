@@ -9,7 +9,11 @@
     transition: all ease 0.8s;
 }
 
-a{text-decoration:none;color:#000;}
-.card-item:hover{
+a {
+    text-decoration: none;
+    color: #000;
+}
+
+.card-item:hover {
     background-color: yellowgreen;
 }
