@@ -8,6 +8,7 @@ import CustomersPage from './pages/CustomersPage';
 import HomePage from './pages/HomePage';
 import { Button, Container, Form, Nav, Navbar, NavDropdown, Offcanvas } from 'react-bootstrap';
 import api from './services/api';
+import UserCreatePage from './pages/UserCreatePage';
 
 export default function App() {
 
@@ -54,6 +55,7 @@ export default function App() {
             <Offcanvas.Body>
               <Nav className="justify-content-end flex-grow-1 pe-3">
                 <Nav.Link><Link className='nav-link' to="/users">Users</Link></Nav.Link>
+                <Nav.Link><Link className='nav-link' to="/users/create">Create User</Link></Nav.Link>
                 <Nav.Link><p className='nav-link' onClick={handleChangeRate}>{lastRate.status ? 'Disable' : 'Enable'} Rate</p></Nav.Link>
               </Nav>
             </Offcanvas.Body>
@@ -64,13 +66,14 @@ export default function App() {
 
         <Routes>
           <Route path="/users" element={<UsersPage />} />
+          <Route path="/users/create" element={<UserCreatePage />} />
           <Route path="/payments" element={<PaymentsPage />} />
           <Route path="/rate" element={<RateCreatePage />} />
           <Route path="/" element={<HomePage />} />
           <Route path="/users/:id/customers" element={<CustomersPage />} />
           <Route path="/customers/:id/payments" element={<PaymentsPage />} />
         </Routes>
-        {location.pathname == '/' ? '' : <Button onClick={handleGoBack}>Voltar</Button>}
+        {location.pathname === '/' ? '' : <Button onClick={handleGoBack}>Voltar</Button>}
       </div>
     </div>
   );
