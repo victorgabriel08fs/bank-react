@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Route, Link, Routes, useNavigate, useLocation } from 'react-router-dom';
 import RateCreatePage from './pages/RateCreatePage';
 import PaymentsPage from './pages/PaymentsPage';
@@ -7,8 +7,11 @@ import UsersPage from './pages/UsersPage';
 import CustomersPage from './pages/CustomersPage';
 import HomePage from './pages/HomePage';
 import { Button, Container, Form, Nav, Navbar, NavDropdown, Offcanvas } from 'react-bootstrap';
+import api from './services/api';
 
 export default function App() {
+
+  const [lastRate, setLastRate] = useState({});
 
   let navigate = useNavigate();
   let location = useLocation();
@@ -18,6 +21,19 @@ export default function App() {
   const handleGoBack = () => {
     navigate(-1);
   }
+
+  const handleChangeRate = () => {
+    api.get("configs/rates/change").then(async (response) => {
+      var data = await response.data;
+    });
+  }
+
+  useEffect(() => {
+    api.get("configs/rates").then(async (response) => {
+      var data = await response.data;
+      setLastRate(data);
+    });
+  }, [lastRate])
 
   return (
     <div >
@@ -38,7 +54,7 @@ export default function App() {
             <Offcanvas.Body>
               <Nav className="justify-content-end flex-grow-1 pe-3">
                 <Nav.Link><Link className='nav-link' to="/users">Users</Link></Nav.Link>
-                {/* <Nav.Link><Link className='nav-link' to="/payments">Payments</Link></Nav.Link> */}
+                <Nav.Link><p className='nav-link' onClick={handleChangeRate}>{lastRate.status ? 'Disable' : 'Enable'} Rate</p></Nav.Link>
               </Nav>
             </Offcanvas.Body>
           </Navbar.Offcanvas>
