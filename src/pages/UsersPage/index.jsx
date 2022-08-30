@@ -24,6 +24,7 @@ const UsersPage = () => {
                     <th>Name</th>
                     <th>CPF/CNPJ</th>
                     <th>Customers</th>
+                    <th>Account Balance</th>
                 </tr>
             </thead>
             <tbody>

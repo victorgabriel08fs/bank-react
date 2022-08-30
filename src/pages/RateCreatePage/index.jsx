@@ -16,18 +16,10 @@ const RateCreatePage = () => {
 
     const [taxa, setTaxa] = useState(1);
 
-    useEffect(() => {
-        api.get("users").then(async (response) => {
-            var data = await response.data;
-            setPayments(data);
-            setLoading(true);
-        });
-    }, []);
-
     async function handleSubmit(e) {
         e.preventDefault();
 
-        api.post('configs/rates', { value: 1 }).then(response => {
+        api.post('configs/rates', { value: taxa }).then(response => {
             console.log(response);
         })
             .catch(error => {
@@ -36,7 +28,7 @@ const RateCreatePage = () => {
     }
 
     function handleTaxa(event) {
-        const { name, value } = event.target;
+        const { value } = event.target;
         setTaxa(value);
     }
 
