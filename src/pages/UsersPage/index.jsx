@@ -13,7 +13,10 @@ const UsersPage = () => {
             var data = await response.data;
             setUsers(data);
             setLoading(true);
+
         });
+
+
     }, [users]);
 
     return (<div>
@@ -24,13 +27,13 @@ const UsersPage = () => {
                     <th>Name</th>
                     <th>CPF/CNPJ</th>
                     <th>Customers</th>
-                    <th>Account Balance</th>
+                    <th >Account Balance</th>
                 </tr>
             </thead>
             <tbody>
-                    {users.map((user) => {
-                        return (loading?<CardItem key={user.id} item={user} />:'Loading');
-                    })}
+                {users.map((user) => {
+                    return (loading ? <CardItem key={user.id} item={user} /> : 'Loading');
+                })}
             </tbody>
         </Table>
     </div>);
